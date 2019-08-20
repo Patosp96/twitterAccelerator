@@ -1,8 +1,7 @@
 package service
 
-import (
-	"github.com/abiosoft/ishell"
-)
+import "github.com/abiosoft/ishell"
+
 
 func main() {
 
