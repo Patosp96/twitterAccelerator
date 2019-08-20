@@ -1,11 +1,13 @@
 package service
 
-var Tweet string
+import "github.com/Patosp96/twitterAccelerator/src/domain"
 
-func PublishTweet(tweet string) {
+var Tweet *domain.Tweet
+
+func PublishTweet(tweet *domain.Tweet) {
 	Tweet = tweet
 }
 
-func GetTweet() string {
+func GetTweet() *domain.Tweet {
 	return Tweet
 }
