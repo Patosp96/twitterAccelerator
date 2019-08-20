@@ -9,6 +9,7 @@ type Tweet struct {
 }
 
 func NewTweet(user, text string) *Tweet {
+
 	date := time.Now()
 
 	tweet := Tweet{
@@ -19,4 +20,3 @@ func NewTweet(user, text string) *Tweet {
 
 	return &tweet
 }
-
