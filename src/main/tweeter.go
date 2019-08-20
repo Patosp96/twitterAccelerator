@@ -1,6 +1,9 @@
-package service
+package main
 
-import "github.com/abiosoft/ishell"
+import (
+	"github.com/Patosp96/twitterAccelerator/src/service"
+	"github.com/abiosoft/ishell"
+)
 
 
 func main() {
@@ -20,7 +23,7 @@ func main() {
 
 			tweet := c.ReadLine()
 
-			PublishTweet(tweet)
+			service.PublishTweet(tweet)
 
 			c.Print("Tweet sent\n")
 
@@ -35,7 +38,7 @@ func main() {
 
 			defer c.ShowPrompt(true)
 
-			tweet := GetTweet()
+			tweet := service.GetTweet()
 
 			c.Println(tweet)
 
