@@ -28,3 +28,61 @@ func TestPublishedTweetIsSaved(t *testing.T) {
 		t.Error("Expected date can't be nil")
 	}
 }
+
+func TestWithoutUserIsNotPublished(t *testing.T) {
+
+	var tweet *domain.Tweet
+	var user string
+	text := "This is my first tweet"
+
+	tweet = domain.NewTweet(user, text)
+
+	var err error
+	err = service.PublishTweet(tweet)
+
+	if err != nil && err.Error() != "user is required" {
+		t.Error("Excpected error is user is required")
+	}
+}
+
+func TestWithoutTextIsNotPublished(t *testing.T) {
+
+	var tweet *domain.Tweet
+	user := "User123"
+	var text string
+
+	tweet = domain.NewTweet(user, text)
+
+	var err error
+	err = service.PublishTweet(tweet)
+
+	if err != nil && err.Error() != "text is required" {
+		t.Error("Excpected error is text is required")
+	}
+
+}
+
+func TestTweetWhichExceeding140CharactersIsNotPublished(t *testing.T) {
+
+	var tweet *domain.Tweet
+	user := "User123"
+	text := "123456789123456789123456789" +
+		    "123456789123456789123456789" +
+			"123456789123456789123456789" +
+			"123456789123456789123456789" +
+			"123456789123456789123456789" +
+			"123456"
+
+	tweet = domain.NewTweet(user, text)
+
+	var err error
+	err = service.PublishTweet(tweet)
+
+	if err != nil && err.Error() != "text is longest than 140" {
+		t.Error("Excpected error is text is longest than 140")
+	}
+}
+
+
+
+
